@@ -1,0 +1,77 @@
+:root {
+    /* Light mode colors */
+    --background-color: #e0f7fa; /* Light teal background */
+    --text-color: #00695c; /* Darker teal text for light mode */
+    --button-bg-color: #26a69a; /* Light mode button background */
+    --button-text-color: #ffffff; /* White text on buttons */
+    --input-bg-color: rgba(38, 166, 154, .1); /* Light teal input background */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark mode colors */
+        --background-color: #263238; /* Dark teal background */
+        --text-color: #80cbc4; /* Brighter teal text for dark mode */
+        --button-bg-color: #00796b; /* Dark mode button background */
+        --button-text-color: #e0f2f1; /* Lighter text on buttons */
+        --input-bg-color: rgba(128, 203, 196, .1); /* Dark teal input background */
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+textarea, button, .result-box {
+    border-radius: 5px;
+}
+
+textarea, .inputOptions {
+    resize: horizontal;
+    overflow: auto;
+    border: none;
+    background-color: var(--input-bg-color);
+    color: var(--text-color); /* Set text color for textarea and .inputOptions */
+}
+
+.button-container {
+    background-color: var(--button-bg-color);
+    padding: 10px;
+    color: var(--button-text-color);
+    text-align: center;
+    border-radius: 5px;
+}
+
+.icon-button {
+    font-size: 36px;
+    border: none;
+    background: none;
+    color: var(--button-text-color);
+}
+
+#content {
+    direction: ltr;
+    text-align: center;
+}
+
+.input-group, .result-box {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: var(--input-bg-color);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* Ensuring text color changes in dark mode for textarea and .inputOptions */
+@media (prefers-color-scheme: dark) {
+    textarea, .inputOptions {
+        color: var(--text-color);
+    }
+}
