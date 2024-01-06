@@ -1,8 +1,40 @@
-fetch('buttons.json')
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const buttonContainer = document.getElementById('container');
+  const responseButtons = await fetch('./buttons.json');
+  const buttons = await responseButtons.json();
+  
+let xmlData;
+const responseXML = await fetch('./svg.xml');
+const str = await responseXML.text();
+const svgs = new DOMParser().parseFromString(str , "application/xml");
+
+buttons.forEach(button =>{
+      let params = '';
+      if (button.paramsToFunction){
+        button.paramsToFunction.forEach(param =>{
+          if (params != '')
+            params += `,`
+          params += `'${param}'`;
+        })
+      }
+      let svg = new XMLSerializer().serializeToString(svgs.getElementById(button.nameInXML));
+    
+      
+      let text = `<button onclick="${button.function}(${params})" class="icon-button"> ${svg} </button>`
+      buttonContainer.innerHTML += text;
+      
+  });
+
+});
+
+/*
+fetch('./buttons.json')
     .then(response => response.json())
     .then(buttons => {
         buttons.forEach(button => {
-            fetch('./svg.xml')
+            fetch('./svg.xml') // Assuming this fetches the correct SVG
                 .then(response => response.text())
                 .then(xml => {
                     const parser = new DOMParser();
@@ -10,26 +42,22 @@ fetch('buttons.json')
                     const svg = xmlDoc.getElementById(button.nameInXML);
 
                     const newButton = document.createElement('button');
-                    newButton.classList.add('icon-button'); // Apply your icon-button class
+                    newButton.classList.add('icon-button');
                     newButton.appendChild(svg.cloneNode(true));
 
-                    // Set the button's onclick event
-                    newButton.onclick = function() {
-                      if (button.paramsToFunction) {
-                          const funcCall = `${button.function}(${button.paramsToFunction.map(param => JSON.stringify(param)).join(',')})`;
-                          eval(funcCall);
-                      } else {
-                          // Directly evaluate the function call
-                          eval(`${button.function}`+ '()');
-                      }
-                  };
+                    if (functionMap[button.function]) {
+                        newButton.onclick = function() {
+                            functionMap[button.function].apply(null, button.paramsToFunction);
+                        };
+                    } else {
+                    }
 
-                    document.querySelector('.button-container').appendChild(newButton); 
+                    document.querySelector('.button-container').appendChild(newButton);
                 });
         });
     })
-    .catch(error => console.error('Error:', error));  
-
+    .catch(error => console.error('Error:', error));
+*/
     function setDirection(dir) {
       document.getElementById('content').style.direction = dir;
     }
@@ -83,9 +111,10 @@ fetch('buttons.json')
         }
         result = newResult;
     });
+   
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = result.map(res => `<div class="result-box">${res}<input type="text" placeholder="Add comment"></div>`).join('<br>');
-}
+  }
 
 
 function exportToFile(fileName = 'result') {
@@ -100,7 +129,6 @@ function exportToFile(fileName = 'result') {
       content += `${cartesianProductText} [Comment: ${commentText}]\n`;
   });
   
-  // Create a blob for the content
   const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
   
   // Create an anchor element and trigger the download
@@ -113,9 +141,6 @@ function exportToFile(fileName = 'result') {
 	let jsonObject = buildJsonObject();
 
 }
-
-
-
 
 
   
