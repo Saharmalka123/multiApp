@@ -1,0 +1,36 @@
+[
+    {
+        "functionName": "calc",
+        "function": "calculateCartesianProduct",
+        "nameInXML": "execute"
+    },
+    {
+        "functionName": "add",
+        "function": "addInput",
+        "nameInXML": "add"
+    }, 
+    {
+        "functionName": "clear",
+        "function": "clearForm",
+        "nameInXML": "clear"
+    },
+    {
+        "functionName": "export",
+        "function": "exportToFile",
+        "nameInXML": "share"
+    },
+   
+    {
+        "functionName": "rtl",
+        "function": "setDirection",
+        "paramsToFunction": ["rtl"],
+        "nameInXML": "rtl"
+    },
+    {
+        "functionName": "ltr",
+        "function": "setDirection",
+        "paramsToFunction": ["ltr"],
+        "nameInXML": "ltr"
+    }
+    
+]

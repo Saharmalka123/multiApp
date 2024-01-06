@@ -1,20 +1,24 @@
 :root {
     /* Light mode colors */
-    --background-color: #e0f7fa; /* Light teal background */
-    --text-color: #00695c; /* Darker teal text for light mode */
-    --button-bg-color: #26a69a; /* Light mode button background */
-    --button-text-color: #ffffff; /* White text on buttons */
-    --input-bg-color: rgba(38, 166, 154, .1); /* Light teal input background */
+    --background-color: #e0f7fa; 
+    --text-color: #00695c; 
+    --button-bg-color: #4ecec1; 
+    --button-text-color: #ffffff; 
+    --input-bg-color: rgba(38, 166, 154, .1); 
+    --button: #ef9664;
+    --icons: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         /* Dark mode colors */
-        --background-color: #263238; /* Dark teal background */
-        --text-color: #80cbc4; /* Brighter teal text for dark mode */
-        --button-bg-color: #00796b; /* Dark mode button background */
-        --button-text-color: #e0f2f1; /* Lighter text on buttons */
-        --input-bg-color: rgba(128, 203, 196, .1); /* Dark teal input background */
+        --background-color: #13005A; 
+        --text-color: #03C988; 
+        --button-bg-color: #00337C; 
+        --button-text-color: #e0f2f1; 
+        --input-bg-color: rgba(128, 203, 196, .1);
+        --button: #cf763a;
+        --icons: #03C988;
     }
 }
 
@@ -36,20 +40,31 @@ textarea, .inputOptions {
     background-color: var(--input-bg-color);
     color: var(--text-color); /* Set text color for textarea and .inputOptions */
 }
-
+.container{
+    display: flex;
+    justify-content: center;  
+}
 .button-container {
     background-color: var(--button-bg-color);
-    padding: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     color: var(--button-text-color);
     text-align: center;
     border-radius: 5px;
+    width: 70vh; 
 }
 
 .icon-button {
+    margin-right: 0.6vh;
+    margin-left: 0.6vh;
     font-size: 36px;
     border: none;
     background: none;
-    color: var(--button-text-color);
+    color: var(--button);
+    fill:var(--icons)
+}
+.icon-button:hover {
+    transform: scale(1.1);
 }
 
 #content {

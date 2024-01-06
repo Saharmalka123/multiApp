@@ -1,9 +1,35 @@
+fetch('buttons.json')
+    .then(response => response.json())
+    .then(buttons => {
+        buttons.forEach(button => {
+            fetch('svg.xml')
+                .then(response => response.text())
+                .then(xml => {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xml, "text/xml");
+                    const svg = xmlDoc.getElementById(button.nameInXML);
 
- /*fetch('icons.svg')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('svg-container').innerHTML = data;
-            });*/
+                    const newButton = document.createElement('button');
+                    newButton.classList.add('icon-button'); // Apply your icon-button class
+                    newButton.appendChild(svg.cloneNode(true));
+
+                    // Set the button's onclick event
+                    newButton.onclick = function() {
+                      if (button.paramsToFunction) {
+                          const funcCall = `${button.function}(${button.paramsToFunction.map(param => JSON.stringify(param)).join(',')})`;
+                          eval(funcCall);
+                      } else {
+                          // Directly evaluate the function call
+                          eval(`${button.function}`+ '()');
+                      }
+                  };
+
+                    document.querySelector('.button-container').appendChild(newButton); 
+                });
+        });
+    })
+    .catch(error => console.error('Error:', error));  
+
     function setDirection(dir) {
       document.getElementById('content').style.direction = dir;
     }
