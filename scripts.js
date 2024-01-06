@@ -2,7 +2,7 @@ fetch('buttons.json')
     .then(response => response.json())
     .then(buttons => {
         buttons.forEach(button => {
-            fetch('svg.xml')
+            fetch('/svg.xml')
                 .then(response => response.text())
                 .then(xml => {
                     const parser = new DOMParser();
