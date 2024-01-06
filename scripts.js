@@ -29,35 +29,6 @@ buttons.forEach(button =>{
 
 });
 
-/*
-fetch('./buttons.json')
-    .then(response => response.json())
-    .then(buttons => {
-        buttons.forEach(button => {
-            fetch('./svg.xml') // Assuming this fetches the correct SVG
-                .then(response => response.text())
-                .then(xml => {
-                    const parser = new DOMParser();
-                    const xmlDoc = parser.parseFromString(xml, "text/xml");
-                    const svg = xmlDoc.getElementById(button.nameInXML);
-
-                    const newButton = document.createElement('button');
-                    newButton.classList.add('icon-button');
-                    newButton.appendChild(svg.cloneNode(true));
-
-                    if (functionMap[button.function]) {
-                        newButton.onclick = function() {
-                            functionMap[button.function].apply(null, button.paramsToFunction);
-                        };
-                    } else {
-                    }
-
-                    document.querySelector('.button-container').appendChild(newButton);
-                });
-        });
-    })
-    .catch(error => console.error('Error:', error));
-*/
     function setDirection(dir) {
       document.getElementById('content').style.direction = dir;
     }
