@@ -1,4 +1,4 @@
-fetch('buttons.json')
+fetch('./buttons.json')
     .then(response => response.json())
     .then(buttons => {
         buttons.forEach(button => {
