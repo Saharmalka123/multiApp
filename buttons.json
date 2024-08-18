@@ -19,7 +19,6 @@
         "function": "exportToFile",
         "nameInXML": "share"
     },
-   
     {
         "functionName": "rtl",
         "function": "setDirection",
@@ -32,5 +31,4 @@
         "paramsToFunction": ["ltr"],
         "nameInXML": "ltr"
     }
-    
 ]
